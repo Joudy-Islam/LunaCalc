@@ -125,3 +125,59 @@ button:active {
    }
 
 }
+
+
+.calculator{
+    position: relative;
+}
+
+.history-btn{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    border-radius: 25%;
+    height: 38px;
+    width: 38px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+}
+.history-panel{
+    position: absolute;
+    height: 75%;
+    width: 100%;
+    left:0;
+    bottom:0;
+    background: rgba(35, 21, 55, 0.95);
+    backdrop-filter: blur(10px);
+    padding:20px;
+    border-radius: 24px 24px 28px 28px;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+.hidden{
+    display: none;
+}
+.history-list{
+    list-style: none;
+    overflow-y: auto;
+    text-align: right;
+    font-size: 18px;
+    color: #e0d4f5;
+    
+}
+
+.history-list li{
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+}
+.clear-history{
+    background-color: #49135f;
+    height:45px;
+    width: 100%;
+    font-size:16px;
+    color:#d9baff;
+
+}

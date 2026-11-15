@@ -2,12 +2,17 @@
 
 const currentOperand = document.querySelector(".current-operand");
 const previousOperand = document.querySelector(".previous-operand");
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll(".buttons button");
+const historyBtn = document.querySelector(".history-btn");
+const historyPanel = document.querySelector("history-panel");
+const historyList = document.querySelector(".history-list");
+const ClearHistoryBtn = document.querySelector(".clear-history");
 
 let currentInput = "0";
 let previousInput = "";
 let operator = null;
 let shouldResetScreen = false;
+let history = [];
 
 function updateDisplay() {
     currentOperand.textContent = currentInput;
@@ -106,14 +111,24 @@ function calculate() {
             result = firstNumber / secondNumber;
             break;
     }
-
+    const formattedResult = Number(result.toPrecision(12));
+    const equation = `${firstNumber} ${operator} ${secondNumber} = ${formattedResult}`;
+    history.unshift(equation);
+    renderHistory();
     currentInput = String(Number(result.toPrecision(12)));
     previousInput = "";
     operator = null;
     shouldResetScreen = true;
     updateDisplay();
 }
-
+function renderHistory(){
+    historyList.innerHTML = "";
+    history.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        historyList.appendChild(li);
+    });
+}
 function percentage() {
     currentInput = String(Number(currentInput) / 100);
     shouldResetScreen = true;
@@ -192,5 +207,12 @@ document.addEventListener("keydown", (event) => {
    else if(key === "%"){
     percentage();
    }
+});
+historyBtn.addEventListener("click", () => {
+    historyPanel.classList.toggle("hidden");
+});
+ClearHistoryBtn.addEventListener("click", () => {
+    history = [];
+    renderHistory();
 });
 updateDisplay();

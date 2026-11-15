@@ -1,20 +1,20 @@
-const { useImperativeHandle } = require("react");
+
 
 const currentOperand = document.querySelector(".current-operand");
-const previousOperand = document.querySelector(".prevoiusOperand");
+const previousOperand = document.querySelector(".previous-operand");
 const buttons = document.querySelectorAll("button");
 
 let currentInput = "0";
 let previousInput = "";
 let operator = null;
-let shouldResetScreen= false;
+let shouldResetScreen = false;
 
 function updateDisplay() {
     currentOperand.textContent = currentInput;
     previousOperand.textContent = previousInput;
 }
 
-const clearCalculator() {
+function clearCalculator() {
     currentInput = "0";
     previousInput = "";
     operator = null;
@@ -24,7 +24,7 @@ const clearCalculator() {
 
 function deleteDigit() {
     if (shouldResetScreen) {
-        currentInput = 0;
+        currentInput = "0";
         shouldResetScreen = false;
 
     }
@@ -40,8 +40,28 @@ function deleteDigit() {
     updateDisplay();
 }
 
-function chhoseOperator(selectedOperator) {
-    if (operator !== null && !shouldResetScreen){
+function appendNumber(number) {
+    if (shouldResetScreen) {
+        currentInput = number;
+        shouldResetScreen = false;
+
+    }
+    else {
+        if (number === "." && currentInput.includes(".")
+        ) { return; }
+        
+        if(currentInput === "0" && number !== "."){
+            currentInput = number;
+        }
+        else {
+            currentInput += number;
+        }
+    }
+    updateDisplay();
+}
+
+function chooseOperator(selectedOperator) {
+    if (operator !== null && !shouldResetScreen) {
         calculate();
     }
 
@@ -56,18 +76,18 @@ function calculate() {
         return;
     }
     const firstNumber = Number(previousInput);
-    const secondNumber = number(currentInput);
+    const secondNumber = Number(currentInput);
 
     let result;
 
-    switch(operator){
+    switch (operator) {
         case "+":
             result = firstNumber + secondNumber;
             break;
 
         case "-":
-        result = firstNumber + secondNumber;
-        break;
+            result = firstNumber - secondNumber;
+            break;
 
         case "×":
             result = firstNumber * secondNumber;
@@ -87,7 +107,7 @@ function calculate() {
             break;
     }
 
-    currentInput = string(NUmber(result.toPrecision(12)));
+    currentInput = String(Number(result.toPrecision(12)));
     previousInput = "";
     operator = null;
     shouldResetScreen = true;
@@ -107,21 +127,26 @@ buttons.forEach(button => {
         if (value === "AC") {
             clearCalculator();
         }
-
-        else if (value == "DELL") {
+ 
+        else if (value == "DEL") {
             deleteDigit();
         }
 
-        else if (value === "%"){
+        else if (value === "%") {
             percentage()
         }
-
-        else if(["+","-","×","÷"].includes(value)) {
-            chooseOPerator(value);
-            else {
-                appendNumber(value);
-            }
+        
+        else if (value === "=") {
+            calculate();
         }
+
+        else if (["+", "-", "×", "÷"].includes(value)) {
+            chooseOperator(value);
+        }
+        else {
+            appendNumber(value);
+        }
+
     });
 });
 updateDisplay();

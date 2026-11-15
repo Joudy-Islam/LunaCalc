@@ -135,7 +135,7 @@ buttons.forEach(button => {
         else if (value === "%") {
             percentage()
         }
-        
+
         else if (value === "=") {
             calculate();
         }
@@ -148,5 +148,49 @@ buttons.forEach(button => {
         }
 
     });
+});
+
+document.addEventListener("keydown", (event) => {
+    const key = event.key;
+
+   if(key >= "0" && key <= "9"){
+     appendNumber(key);
+   }
+
+   else if(key === "."){
+    appendNumber=(".");
+   }
+
+   else if(key === "+"){
+    chooseOperator=("+");
+   }
+
+   else if(key === "-"){
+    chooseOperator=("-");
+   }
+
+   else if(key === "*"){
+    chooseOperator=("×");
+   }
+
+   else if(key === "/"){
+    event.preventDefault();
+    chooseOperator=("÷");
+   }
+
+   else if(key === "Enter" || key === "="){
+    calculate();
+   }
+
+   else if(key === "Backspace" || key === "Delete"){
+    deleteDigit();
+   }
+
+   else if(key === "Escape"){
+    clearCalculator();
+   }
+   else if(key === "%"){
+    percentage();
+   }
 });
 updateDisplay();

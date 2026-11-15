@@ -66,6 +66,62 @@ color:#ffffff;
 font-size: 20px;
 font-weight:500;
 cursor:pointer;
+transition: all 0.2s ease;
 
+}
+
+button:hover{
+    background: #49345f;
+    transform: translateY(-3px);
+
+}
+
+button:active {
+    transform: scale(0.94);
+}
+.buttons{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:12px; 
+}
+
+.fuction{
+    background: #49135f;
+    color: #d9baff;
+}
+
+.operator{
+    background:#623c88;
+    color:#ffffff;
+}
+
+.equals{
+    background:#b78aff;
+    color:#1b1029;
+    font-weight:bold;
+
+}
+
+.equals:hover{
+    background: #c9aaff;
+
+}
+
+.zero{
+    grid-column:span 2;
+
+}
+
+@media(max-width 400px) {
+    .calculator {
+        width:90%;
+        padding:18px;
+    }
+
+    button:{ height:58px;}
+
+   .current-operand{
+    font-size:36px;
+   }
 
 }

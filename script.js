@@ -100,3 +100,28 @@ function percentage() {
     updateDisplay();
 }
 
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.textContent;
+
+        if (value === "AC") {
+            clearCalculator();
+        }
+
+        else if (value == "DELL") {
+            deleteDigit();
+        }
+
+        else if (value === "%"){
+            percentage()
+        }
+
+        else if(["+","-","×","÷"].includes(value)) {
+            chooseOPerator(value);
+            else {
+                appendNumber(value);
+            }
+        }
+    });
+});
+updateDisplay();

@@ -22,7 +22,7 @@ body {
 
 .calculator{
     width:340px;
-    padding:25;
+    padding:25px;
     background: rgba(35, 21, 55, 0.85);
     border: 1px solid rgba(190, 150,255, 0.15);
     border-radius: 28px;
@@ -85,7 +85,7 @@ button:active {
     gap:12px; 
 }
 
-.fuction{
+.function{
     background: #49135f;
     color: #d9baff;
 }
@@ -112,13 +112,13 @@ button:active {
 
 }
 
-@media(max-width 400px) {
+@media(max-width :400px) {
     .calculator {
         width:90%;
         padding:18px;
     }
 
-    button:{ height:58px;}
+    button{ height:58px;}
 
    .current-operand{
     font-size:36px;

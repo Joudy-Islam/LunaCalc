@@ -158,24 +158,24 @@ document.addEventListener("keydown", (event) => {
    }
 
    else if(key === "."){
-    appendNumber=(".");
+    appendNumber(".");
    }
 
    else if(key === "+"){
-    chooseOperator=("+");
+    chooseOperator("+");
    }
 
    else if(key === "-"){
-    chooseOperator=("-");
+    chooseOperator("-");
    }
 
    else if(key === "*"){
-    chooseOperator=("×");
+    chooseOperator("×");
    }
 
    else if(key === "/"){
     event.preventDefault();
-    chooseOperator=("÷");
+    chooseOperator("÷");
    }
 
    else if(key === "Enter" || key === "="){

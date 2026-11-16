@@ -13,7 +13,7 @@ An interactive calculator with basic operations, a history list, and keyboard su
 - ÷ - /
 - % - %
 - . - .
-- 0-9 - 0.9
+- 0-9 - 0-9
 
 # Build By
 - HTML

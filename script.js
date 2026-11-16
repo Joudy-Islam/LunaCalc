@@ -4,7 +4,7 @@ const currentOperand = document.querySelector(".current-operand");
 const previousOperand = document.querySelector(".previous-operand");
 const buttons = document.querySelectorAll(".buttons button");
 const historyBtn = document.querySelector(".history-btn");
-const historyPanel = document.querySelector("history-panel");
+const historyPanel = document.querySelector(".history-panel");
 const historyList = document.querySelector(".history-list");
 const ClearHistoryBtn = document.querySelector(".clear-history");
 
@@ -47,7 +47,7 @@ function deleteDigit() {
 
 function appendNumber(number) {
     if (shouldResetScreen) {
-        currentInput = number;
+        currentInput = number === "." ? "0." :number;
         shouldResetScreen = false;
 
     }
@@ -128,6 +128,10 @@ function renderHistory(){
         li.textContent = item;
         historyList.appendChild(li);
     });
+ 
+    const hHistory = history.length > 0;
+    historyList.classList.toggle("hidden", !hHistory);
+    ClearHistoryBtn.classList.toggle("hidden", !hHistory);
 }
 function percentage() {
     currentInput = String(Number(currentInput) / 100);
